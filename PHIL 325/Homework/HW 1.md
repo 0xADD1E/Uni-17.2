@@ -112,4 +112,16 @@ Not possible (at least to express anything other than truth values) -- We don't 
 ### Q2
 Construct truth-functional paraphrases of the premises and conclusions of the following arguments, provide symbolization keys, and symbolize your paraphrases in SL.
 #### B
-If this piece of metal is gold, then it has atomic number 79. Nordvik believes this piece of metal is gold. Therefore Nordvik believes this piece of metal has atomic number 79.
+| Symbol | Statement                                                 |
+|:-------|:----------------------------------------------------------|
+| G      | This piece of metal is gold                               |
+| N      | This piece of metal has atomic number 79                  |
+| B      | Nordvik believes this piece of metal is gold              |
+| C      | Nordvik believes this piece of metal has atomic number 79 |
+
+```
+G ⊃ N
+B
+-----
+C
+```
