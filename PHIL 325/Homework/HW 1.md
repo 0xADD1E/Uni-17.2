@@ -13,14 +13,21 @@ Yes
 ## 1.3
 ### Q2
 ### D
-With an inconsistent set of premises, you can draw any conclusion you like (making it logically valid), but the premises can never be all true due to the inconsistancy, making it impossible to be sound
+Assume **{P}** is a logically inconsistent set of sentences, and **Q** is an arbitary statement
+Thus, it is is impossible for all elements of **{P}** to be true simulaniously
+Thus, it will be impossible for all of **{P}**'s elements to be true, while having **Q** be false
+Thus, **{P}** logically entails **Q**
+Therefore **{P}** ⊃ **Q** is logically valid
+Additionally, it is is impossible for all elements of **{P}** to be true simulaniously
+Therefore, it is impossible for any argument with premises **{P}** to be logically sound
+...
 
 ## 2.1
 ### Q1
 Which of the following are sentences of SL and which are not? For those that are not, explain why they are not
 
 #### D
-Informally, yes (no outer parentheses)
+No -- `~` isn't a binary connective
 
 #### F
 No -- bolded letters aren't defined in that context
