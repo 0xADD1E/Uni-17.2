@@ -9,5 +9,12 @@ clean:
 	rm -rf hw01.dSYM
 test: all
 	./hw01
-handin:
-	echo NotYetImplemented
+handin: all clean
+		# Set of tasks for handing things in automagically
+		scp $(wildcard *.hpp) kira:~/tmp/
+		scp $(wildcard *.cpp) kira:~/tmp/
+		scp Makefile kira:~/tmp/
+		ssh kira "cd ~/tmp/ && make all && make clean &&\
+			~cs411/bin/handin -y 1 * &&\
+			rm -f * ;\
+			true"
