@@ -13,17 +13,24 @@ Yes
 ## 1.3
 ### Q2
 ### D
+
 Assume **{P}** is a logically inconsistent set of sentences, and **Q** is an arbitary statement
+
 Thus, it is is impossible for all elements of **{P}** to be true simulaniously
+
 Thus, it will be impossible for all of **{P}**'s elements to be true, while having **Q** be false
+
 Thus, **{P}** logically entails **Q**
+
 Therefore **{P}** ⊃ **Q** is logically valid
+
 Additionally, it is is impossible for all elements of **{P}** to be true simulaniously
+
 Therefore, it is impossible for any argument with premises **{P}** to be logically sound
-<<<<<<< Updated upstream
-...
-=======
->>>>>>> Stashed changes
+
+
+<div class="page-break"></div>
+
 
 ## 2.1
 ### Q1
@@ -60,8 +67,6 @@ No -- It's a unary operator
 ((R & G) & L) ⊃ C
 ```
 
-<div class="page-break"></div>
-
 ### Q5
 #### B
 If Phil likes either Joseph Cotton or Orson Wells he will like The Third Man, if he sees it. If he likes either Peter O’Toole or Katharine Hepburn he’ll like The Lion in Winter, if he sees it. He doesn’t like either Joseph Cotton or Orson Wells, but he does like Katharine Hepburn. So if he sees The Lion in Winter he will like it.
@@ -96,8 +101,6 @@ S ⊃ L
 | E      | Eric will see Whitness for the Prosecution  |
 | F      | Eric will see Casablanca                    |
 | G      | Phil will see The Lion in Winter            |
-
-<div class="page-break"></div>
 
 ```
 A v B

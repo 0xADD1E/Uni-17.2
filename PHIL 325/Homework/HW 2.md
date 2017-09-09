@@ -13,7 +13,7 @@ Truth Functionally True
 
 ### Q5
 #### D
-True -- That's the definition of the amper operator
+True -- That's the definition of `&`
 #### F
 False -- Consider the case of `False ⊃ False`
 ### Q6
@@ -71,6 +71,9 @@ They are truth-functionally equivalent
 | F | T | F  |   T    | F  |   T    |          T          |
 | T | F | T  |   T    | T  |   T    |          T          |
 | T | T | F  |   F    | F  |   T    |          F          |
+
+<div class="page-break"></div>
+
 ### Q4
 #### B
 | P | Q | P ≡ Q | P & Q | P |
@@ -93,6 +96,8 @@ They are consistant
 | T | T | F |      T      |      T      |   T    |
 | T | T | T |      T      |      T      |   T    |
 
+<div class="page-break"></div>
+
 ### Q4
 #### B
 No -- Consider the case where **P** is {`A v ~A`, `B v ~B`}
@@ -102,15 +107,28 @@ The set will be consistant, but the denial of each will be inconsistent
 ## 3.5
 ### Q5
 #### C
-%%%%%%
-Show that if {P} |= Q and {Q} |= R, then {P} |= R.
+By definition, there are no assignments where all members of **{P}** are true, and any members of **{Q}** are false.
+
+By definition, there are no assignments where all members of **{Q}** are true, and **R** is false.
+
+For **R** to not be entailed by **{P}**, there would need to be at least one truth-value assignment where all members of **{P}** are true, and **R** is false -- However, this is impossible
+
+Therefore, if **{P}** logically entails **{Q}**, and **{Q}** logically entails **R**, **{P}** logically entails **R**
 
 ## 3.6
 ### Q2
 #### D
-%%%%%%
-For any set Γ of sentences of SL and any truth-functionally false sentence P of SL, Γ ∪ {P} is truth-functionally inconsistent.
+By definition, for **Γ** to truth-functionally entail **P**, every truth-value assignment resulting in all values of **Γ** being true must also result in **P** being true
+
+However, **P** can never be truth-functionally
+
+Therefore, **Γ** cannot logically entail **P**
 ### Q3
 #### B
-%%%%%%
-If Γ |= P and Γ |= ∼ P, then Γ is truth-functionally inconsistent.
+By definition, for **Γ** to logically entail **P**, every truth-value assignment resulting in all values of **Γ** being true must also result in **P** being true
+
+By definition, for **Γ** to logically entail **~P**, every truth-value assignment resulting in all values of **Γ** being true must also result in **~P** being true
+
+The only way for both of the previous statements to be true, is if there is not truth-value assignemnt where all members of **Γ** are true
+
+By definition, this makes the members of **Γ** truth-functionally inconsistent.
