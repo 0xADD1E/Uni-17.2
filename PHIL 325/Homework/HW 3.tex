@@ -1,0 +1,267 @@
+\documentclass[letterpaper]{article}
+\usepackage{lplfitch}
+\renewcommand*{\lnot}{\mathord{\sim}}
+\renewcommand*{\lor}{\mathord{\ \vee\ }}
+\renewcommand*{\land}{\mathord{\ \&\ }}
+\renewcommand*{\lif}{\mathord{\ \supset\ }}
+\renewcommand*{\liff}{\mathord{\ \equiv\ }}
+\newcommand*{\lprov}{\mathord{\ \vdash\ }}
+\newcommand*{\lent}{\mathord{\ \models\ }}
+\renewcommand*\lnoti[1]{\intro{\ \lnot} #1}
+\renewcommand*\lnote[1]{\elim{\ \lnot} #1}
+\renewcommand*\reit[1]{\ {\bf Reit:} #1}
+\renewcommand*\landi[2]{\intro{\land} #1, #2}
+\newcommand*{\lifia}{\ A/$\lif${\bf Intro}}
+\newcommand*{\liffia}{\ A/$\liff${\bf Intro}}
+\newcommand*{\lnotia}{\ A/$\lnot${\bf Intro}}
+\newcommand*{\lnotea}{\ A/ $\lnot$ {\bf Elim}}
+\newcommand*{\lorea}{\ A/$\lor${\bf Elim}}
+\author{Addie Morrison}
+\title{Homework 3}
+\begin{document}
+\maketitle
+
+\section*{5.1}
+
+\subsection*{Q2}
+
+\subsubsection*{B}
+
+Derive $\lnot B$
+
+\fitchprf{
+	\pline[1.]{B \lif \lnot B}[Assumption]
+}{
+	\subproof{
+		\pline[2.]{B}[\lnotia]
+	}{
+		\pline[3.]{\lnot B}[\life{1}{2}]\\
+		\pline[4.]{B}[\reit{2}]
+	}
+	\pline[5.]{~B}[\lnoti{2--4}]
+}
+
+\subsubsection*{D}
+
+Derive $H \land \lnot I$
+
+\fitchprf{
+	\pline[1.]{I \land \lnot I}[Assumption]
+}{
+	\subproof{
+		\pline[2.]{~H}[\lnotea]
+	}{
+		\pline[3.]{I \land \lnot I}[\reit{1}]
+	}
+	\pline[4.]{H}[\lnote{2--3}]\\
+	\pline[5.]{\lnot I}[\lande{1}]\\
+	\pline[6.]{H\land\lnot I}[\landi{4}{5}]
+}
+
+\subsubsection*{F}
+
+Derive $A \liff C$:
+
+\fitchprf{
+	\pline[1.]{A \liff \lnot B}[Assumption]\\
+	\pline[2.]{\lnot B \liff C}[Assumption]
+}{
+	\subproof{
+		\pline[3.]{A}[\liffia]
+	}{
+		\pline[4.]{~B}[\liffe{1}{3}]\\
+		\pline[5.]{C}[\liffe{2}{4}]
+	}
+	\subproof{
+		\pline[6.]{C}[\liffia]
+	}{
+		\pline[7.]{~B}[\liffe{2}{6}]\\
+		\pline[8.]{A}[\liffe{1}{7}]
+	}
+	\pline[10.]{A\liff}[\liffi{3--5}{6--8}]
+}
+
+\subsubsection*{H}
+
+Derive $\lnot G$
+
+\fitchprf{
+	\pline[1.]{\lnot F \lif \lnot G}[Assumption]\\
+	\pline[2.]{\lnot F \lor H}[Assumption]\\
+	\pline[3.]{H \liff \lnot G}[Assumption]
+}{
+	\subproof{
+		\pline[4.]{\lnot F}[\lorea]
+	}{
+		\pline[5.]{\lnot G}[\life{1}{4}]
+	}
+	\subproof{
+		\pline[6.]{H}[\lorea]
+	}{
+		\pline[7.]{\lnot G}[\liffe{2}{6}]
+	}
+	\pline[8.]{\lnot G}[\lore{2}{4--5}{6--7}]
+}
+
+\subsubsection*{J}
+
+Derive $\lnot (F \land G)$
+
+\fitchprf{
+	\pline[1.]{F \liff (\lnot G \land H)}[Assumption]
+}{
+	\subproof{
+		\pline[2.]{F \land G}[\lnotia]
+	}{
+		\pline[3.]{F}[\lande{2}]\\
+		\pline[4.]{\lnot G \land H}[\liffe{1}{3}]\\
+		\pline[5.]{\lnot G}[\lande{4}]\\
+		\pline[6.]{G}[\lande{2}]
+	}
+	\pline[7.]{\lnot (F\land G)}[\lnoti{2--6}]
+}
+
+\section*{5.3}
+
+\subsection*{Q1.h}
+
+Derive $E \lor C$
+
+\fitchprf{
+	\pline[1.]{\lnot A \lif \lnot B}[Assumption]\\
+	\pline[2.]{A \lif C}[Assumption]\\
+	\pline[3.]{B \lor D}[Assumption]\\
+	\pline[4.]{D \lif E}[Assumption]
+}{
+	\subproof{
+		\pline[5.]{D}[\lorea]
+	}{
+		\pline[6.]{E}[\life{4}{6}]\\
+		\pline[7.]{E\lor C}[\lori{6}]
+	}
+	\subproof{
+		\pline[8.]{B}[\lorea]
+	}{
+		\subproof{
+			\pline[9.]{\lnot A}[\lnotea]
+		}{
+			\pline[10.]{\lnot B}[\life{1}{9}]
+		}
+		\pline[11.]{A}[\lnote{9--10}]\\
+		\pline[12.]{C}[\life{2}{11}]\\
+		\pline[13.]{E \lor C}[\lori{12}]
+	}
+	\pline[14.]{E \lor C}[\lore{3}{5--7}{8--13}]
+}
+
+\subsection*{Q2.h}
+
+Derive: A
+
+\fitchprf{
+	\pline[1.]{\lnot B \lif A}[Assumption]\\
+	\pline[2.]{C \lor \lnot B}[Assumption]\\
+	\pline[3.]{\lnot C}[Assumption]
+}{
+	\subproof{
+		\pline[4.]{\lnot B}[\lorea]
+	}{
+		\pline[5.]{A}[\life{1}{4}]
+	}
+	\subproof{
+		\pline[6.]{C}[\lorea]
+	}{
+		\subproof{
+			\pline[7.]{\lnot A}[\lnotea]
+		}{
+			\pline[8.]{\lnot C}[\reit{3}]\\
+			\pline[9.]{C}[\reit{6}]
+		}
+		\pline[10.]{A}[\lnote{7--9}]
+	}
+	\pline[11.]{A}[\lore{2}{4--5}{6--10}]
+}
+
+\subsection*{Q3.n}
+
+Derive $[\lnot A \lif \lnot (A \lif B)]\lif A$
+
+\fitchprf{\pline{\emptyset}}{
+	\subproof{
+		\pline[1.]{\lnot A \lif \lnot (A \lif B)}[\lifia]
+	}{
+		\subproof{
+			\pline[2.]{\lnot A}[\lnotea]
+		}{
+			\pline[3.]{\lnot (A \lif B)}[\life{1}{2}]\\
+			\subproof{
+				\pline[4.]{A}[\lifia]
+			}{
+				\subproof{
+					\pline[5.]{\lnot B}[\lnotea]
+				}{
+					\pline[6.]{\lnot A}[\reit{2}]\\
+					\pline[7.]{A}[\reit{4}]
+				}
+			\pline[8.]{B}[\lnote{5--7}]
+			}
+			\pline[9.]{A\lif B}[\lifi{4--8}]\\
+			\pline[10.]{\lnot (A\lif B)}[\reit{3}]
+		}
+		\pline[11.]{A}[\lnote{2--10}]
+	}
+	\pline[12.]{[\lnot A \lif \lnot (A \lif B)]\lif A}[\lifi{1--11}]
+}
+
+\subsection*{Q4.b}
+
+Derive $(A \land A) \liff (A \lor A)$
+
+\fitchprf{\pline{\emptyset}}{
+	\subproof{
+		\pline[1.]{A\land A}[\liffia]
+	}{
+		\pline[2.]{A}[\lande{1}]\\
+		\pline[3.]{A \lor A}[\lori{2}]
+	}
+	\subproof{
+		\pline[4.]{A \lor A}[\liffia]
+	}{
+		\subproof{
+			\pline[5.]{A}[\lorea]
+		}{
+			\pline[6.]{A \land A}[\landi{5}{5}]
+		}
+		\subproof{
+			\pline[7.]{A}[\lorea]
+		}{
+			\pline[8.]{A \land A}[\landi{7}{7}]
+		}
+		\pline[9.]{A\land A}[\lore{4}{5--6}{6--7}]
+	}
+	\pline[10.]{(A \land A) \liff (A \lor A)}[\liffi{1--3}{4--10}]
+}
+
+\subsection*{Q5.d}
+
+Prove that the set is inconsistant
+
+\fitchprf{
+	\pline[1.]{A}[Assumption]\\
+	\pline[2.]{A\liff \lnot (A\liff A)}[Assumption]
+}{
+	\pline[3.]{\lnot (A\liff A)}[\liffe{1}{2}]\\
+	\subproof{
+		\pline[4.]{A}[\liffia]
+	}{
+		\pline[5.]{A}[\reit{4}]
+	}
+	\subproof{
+		\pline[6.]{A}[\liffia]
+	}{
+		\pline[7.]{A}[\reit{6}]
+	}
+	\pline[8.]{A\liff A}[\liffi{4--5}{6--7}]\\
+	\pline[9.]{\lnot (A\liff A)}[\reit[3]]
+}
+\end{document}
