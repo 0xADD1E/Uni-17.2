@@ -1,0 +1,68 @@
+\documentclass{hitec}
+\author{Addie Morrison}
+\title{IME 254 Notes and Formulas}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\setlength{\parindent}{0pt}
+\begin{document}
+\maketitle
+\subsubsection*{Probability Unions}
+$P(A\cup B) = P(A) +P(B)-P(A\cap B)$
+
+\subsubsection*{Compliments}
+$1 = P(A)+P(A^C)$
+
+\subsubsection*{Conditional Probability}
+$P(A|B) = \dfrac{P(A\cap B)}{P(B)}$
+
+\subsubsection*{Independent Events}
+Events are independent if (and only if): $P(A|B) = P(A)$ (and $P(B|A) = P(B)$)
+
+\subsubsection*{Multiplicative rule of Intersecting Events}
+$P(A\cap B) =P(A|B)P(B) = P(B|A)P(A)$
+
+$P(E) = P(E\cap A_1)+P(E\cap A_2)+...+P(E\cap A_k)$
+
+\subsubsection*{Bayes' Rule}
+$P(A|E) = \dfrac{P(E|A)P(A)}{P(E|A)P(A)+P(E|A^C)P(A^C)}$
+
+\subsubsection*{Permutations}
+Used to arrange $r$ items into distinct orders from a set of $n$ total distinct items.
+
+$P^n_r = \dfrac{n!}{(n-r)!}$
+
+\subsubsection*{Partitions}
+To partition a set of $n$ items into $k$ sets with size $s_k$
+
+$Partitions = \dfrac{n!}{s_1!\cdot s_2!\cdot s_k!}$
+
+\subsubsection*{Combinations}
+A special application of partitioning where $n$ elements are divided into two sets (size $s$ and $n-s$)
+
+$C^n_s = \dfrac{n!}{(n-s)!\cdot s!}$
+\subsubsection*{Pareto Diagram}
+A histogram, ranked from highest to lwoest, with a line graph overlayed showing cumulative percentages.
+
+\subsubsection*{Standard Deviation}
+$\sigma = \sqrt{\dfrac{\Sigma^m_{i=1}(y_i - \overline{y})^2}{n-1}}$
+
+At least 75\% of measurements will be withing $\overline{y}\pm 2\sigma$
+
+At least 89\% of measurements will be withing $\overline{y}\pm 3\sigma$
+
+\subsubsection*{Z-Score}
+$z = \dfrac{y-\overline{y}}{\sigma}$
+
+Data points are suspect outliars when $2\le |z| < 3$
+
+Data points are highly suspect outliars when $|z| \ge 3$
+
+\subsubsection*{Quartiles}
+\begin{enumerate}
+	\item Sort the dataset
+	\item Calculate lower quartile bound $Q_L = \dfrac{1}{4(n+1)}$
+	\item Calculate upper quartile bound $Q_U = \dfrac{3}{4(n+1)}$
+	\item Everything else is in the middle quartile $Q_M$
+\end{enumerate}
+\end{document}
