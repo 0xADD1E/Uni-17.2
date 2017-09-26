@@ -1,0 +1,213 @@
+\documentclass{hitec}
+\usepackage{lplfitch}
+\title{Rules of SD}
+\author{Addie Morrison}
+\setlength{\parskip}{1ex}
+\setlength{\parindent}{0pt}
+\begin{document}
+\maketitle
+\section{SD Rules}
+\subsection{Rules of Inference}
+\subsubsection{Conjunction Introduction ($\land$ I)}
+\fitchprf{
+	\pline{P}\\
+	\pline{Q}
+}{
+	\pline{(P\land Q)}[$\land$ I]
+}
+\subsubsection{Conjunction Elimination ($\land$ E)}
+\fitchprf{
+	\pline{P\land Q}
+}{
+	\pline{P}[$\land$ E]
+}
+\subsubsection{Disjunction Introduction ($\lor$ I)}
+\fitchprf{
+	\pline{P}
+}{
+	\pline{P\lor Q}[$\lor$ I]
+}
+\subsubsection{Disjunction Elimination ($\lor$ E)}
+\fitchprf{
+	\pline{P\lor Q}
+}{
+	\subproof{\pline{P}}{\ellipsesline\\\pline{R}}\\
+	\subproof{\pline{Q}}{\ellipsesline\\\pline{R}}\\
+	\pline{R}[$\lor$ E]
+}
+\subsubsection{Conditional Introduction ($\lif$ I)}
+\fitchprf{
+}{
+	\subproof{\pline{P}}{\ellipsesline\\\pline{Q}}\\
+	\pline{P\lif Q}[$\lif$ I]
+}
+\subsubsection{Conditional Elimination ($\lif$ E)}
+\fitchprf{
+	\pline{P\lif Q}\\
+	\pline{P}
+}{
+	\pline{Q}[$\lif$ E]
+}
+\subsubsection{Biconditional Introduction ($\liff$ I)}
+\fitchprf{
+}{
+	\subproof{\pline{P}}{\ellipsesline\\\pline{Q}}\\
+	\subproof{\pline{Q}}{\ellipsesline\\\pline{P}}\\
+	\pline{P\liff Q}[$\liff$ I]
+}
+\subsubsection{Biconditional Elimination ($\liff$ E)}
+\fitchprf{
+	\pline{P\liff Q}\\
+	\pline{P}
+}{
+	\pline{Q}[$\liff$ E]
+}
+\subsubsection{Negation Introduction ($\lnot$ I)}
+\fitchprf{
+}{
+	\subproof{\pline{P}}{\ellipsesline\\\pline{Q}\\\pline{\lnot Q}}\\
+	\pline{\lnot P}[$\lnot$ I]
+}
+\subsubsection{Negation Elimination ($\lnot$ E)}
+\fitchprf{
+}{
+	\subproof{\pline{~P}}{\ellipsesline\\\pline{Q}\\\pline{\lnot Q}}\\
+	\pline{P}[$\lnot$ I]
+}
+\subsubsection{Reiteration (Reit)}
+\fitchprf{
+	\pline{P}
+}{
+	\ellipsesline\\
+	\pline{P}[Reit]
+}
+\section{SD+ Rules}
+\subsection{Rules of Inference}
+\subsubsection{Modus Tollens (MT)}
+\fitchprf{
+	\pline{P\lif Q}\\
+	\pline{\lnot Q}
+}{
+	\pline{\lnot P}[MT]
+}
+\subsubsection{Hypothetical Syllogism (HS)}
+\fitchprf{
+	\pline{P\lif Q}\\
+	\pline{Q\lif R}
+}{
+	\pline{P\lif R}[HS]
+}
+\subsubsection{Disjunctive Syllogism}
+\fitchprf{
+	\pline{P\lor Q}\\
+	\pline{\lnot P}
+}{
+	\pline{Q}[DS]
+}
+
+\fitchprf{
+	\pline{P\lif Q}\\
+	\pline{\lnot P}
+}{
+	\pline{\lnot Q}[DS]
+}
+\subsection{Equivalences}
+\subsubsection{Commutation (COM)}
+\fitchprf{
+	\pline{P\land Q}
+}{
+	\pline{Q\land P}[COM]
+}
+
+\fitchprf{
+	\pline{P\lor Q}
+}{
+	\pline{Q\lor P}[COM]
+}
+\subsubsection{Association (ASC)}
+\fitchprf{
+	\pline{P\land (Q \land R)}
+}{
+	\pline{(P\land Q) \land R}[ASC]
+}
+
+\fitchprf{
+	\pline{P\lor (Q \lor R)}
+}{
+	\pline{(P\lor Q) \lor R}[ASC]
+}
+\subsubsection{Implication (IMP)}
+\fitchprf{
+	\pline{P\lif Q}
+}{
+	\pline{\lnot P\lor Q}[IMP]
+}
+\subsubsection{Double Negation (DN)}
+\fitchprf{
+	\pline{P)}
+}{
+	\pline{\lnot \lnot P}[DN]
+}
+\subsubsection{DeMorgan's Theorm (DEM)}
+\fitchprf{
+	\pline{\lnot(P\land Q)}
+}{
+	\pline{\lnot P\lor \lnot Q}[DEM]
+}
+
+\fitchprf{
+	\pline{\lnot(P\lor Q)}
+}{
+	\pline{\lnot P\land \lnot Q}[DEM]
+}
+\subsubsection{Idempotance (IDEM)}
+\fitchprf{
+	\pline{P}
+}{
+	\pline{P\land P}[IDEM]
+}
+
+\fitchprf{
+	\pline{P}
+}{
+	\pline{P\lor P}[IDEM]
+}
+
+\subsubsection{Transposition (TRANS)}
+\fitchprf{
+	\pline{P\lif Q)}
+}{
+	\pline{\lnot Q\lif \lnot P}[TRANS]
+}
+
+\subsubsection{Exportation (EXP)}
+\fitchprf{
+	\pline{P\lif (Q\lif R)}
+}{
+	\pline{(P\land Q)\lif R}[EXP]
+}
+\subsubsection{Distribution (DIST)}
+\fitchprf{
+	\pline{P\land (Q\lor R)}
+}{
+	\pline{(P\land Q)\lor (P\land R}[DIST]
+}
+
+\fitchprf{
+	\pline{P\lor (Q\land R)}
+}{
+	\pline{(P\lor Q)\land (P\lor R}[DIST]
+}
+\subsubsection{Equivelence (EQUIV)}
+\fitchprf{
+	\pline{P\liff Q}
+}{
+	\pline{(P\lif Q) \land (Q\lif P)}[EQUIV]
+}
+
+\fitchprf{
+	\pline{P\liff Q}
+}{
+	\pline{(P\land Q) \lor (\lnot Q\land \lnot P)}[EQUIV]
+}
+\end{document}

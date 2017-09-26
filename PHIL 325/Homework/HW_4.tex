@@ -1,0 +1,225 @@
+\documentclass[letterpaper]{hitec}
+\usepackage{lplfitch}
+\usepackage{amssymb}
+\renewcommand*{\lnot}{\mathord{\sim}}
+\renewcommand*{\lor}{\mathord{\ \vee\ }}
+\renewcommand*{\land}{\mathord{\ \&\ }}
+\renewcommand*{\lif}{\mathord{\ \supset\ }}
+\renewcommand*{\liff}{\mathord{\ \equiv\ }}
+\newcommand*{\lprov}{\mathord{\ \vdash\ }}
+\newcommand*{\lent}{\mathord{\ \models\ }}
+\renewcommand*\lnoti[1]{\intro{\ \lnot} #1}
+\renewcommand*\lnote[1]{\elim{\ \lnot} #1}
+\renewcommand*\reit[1]{\ {\bf Reit:} #1}
+\renewcommand*\landi[2]{\intro{\land} #1, #2}
+\newcommand*{\lifia}{\ A/$\lif${\bf Intro}}
+\newcommand*{\liffia}{\ A/$\liff${\bf Intro}}
+\newcommand*{\lnotia}{\ A/$\lnot${\bf Intro}}
+\newcommand*{\lnotea}{\ A/ $\lnot$ {\bf Elim}}
+\newcommand*{\lorea}{\ A/$\lor${\bf Elim}}
+\setlength{\parskip}{2ex}
+\setlength{\parindent}{0pt}
+\author{Addie Morrison}
+\title{Homework 4}
+\begin{document}
+\maketitle
+\section*{5.3 -- 14 -- B}
+Show that a sentence P of SL is a theorem in SD if and only if P is truth-functionally true.
+
+If P is truth-functionally true, there is no truth-value assignment where P is false.\\
+As such, P is logically entailed by every set of sentences in SL (as there is no truth-value assignment where all members of the set will be true, and P false).\\
+As such, P is logically entailed by the null set.\\
+As such, P can be derived from the null set.\\
+Therefore, P is a theorm of SD.
+
+\section*{5.4 -- 8 -- B}
+Why must all arguments that are valid in SD be valid in SD+ as well?
+
+SD+ is simply a superset of SD, and as such, includes all the same rules (and a few more) -- therefore, anything derivable from the rules of SD is derivable from those same rules in SD+. In short, they are of equal `strength', meaning that anything provable in one is provable in the other.
+
+\section*{Deriving SD+}
+\subsection*{Disjunctive Syllogism ($((P\lor Q) \land \lnot P) \liff Q$)}
+\fitchprf{
+  \pline[1.]{P\lor Q}\\
+  \pline[2.]{\lnot P}
+}{
+  \subproof{
+    \pline[3.]{P}[\lorea]
+  }{
+    \subproof{
+      \pline[4.]{\lnot Q}[\lnotea]
+    }{
+      \pline[5.]{P}[\reit{3}]\\
+      \pline[6.]{\lnot P}[\reit{2}]
+    }
+    \pline[7.]{Q}[\lnote{4--6}]
+  }\\
+  \subproof{
+    \pline[8.]{Q}[\lorea]
+  }{
+    \pline[9.]{Q}[\reit{8}]
+  }
+  \pline[10.]{Q}[\lore{1}{3--7}{8--9}]
+}
+\subsection*{Commutation ($(P\lor Q)\liff (Q\lor P)$)}
+\fitchprf{
+  \pline[1.]{P\lor Q}
+}{
+  \subproof{
+    \pline[2.]{P}[\lorea]
+  }{
+    \pline[3.]{Q\lor P}[\lori{2}]
+  }\\
+  \subproof{
+    \pline[4.]{Q}[\lorea]
+  }{
+    \pline[5.]{Q\lor P}[\lori{4}]
+  }
+  \pline[6.]{Q\lor P}[\lore{1}{2--3}{4--5}]
+}
+
+\fitchprf{
+  \pline[1.]{Q\lor P}
+}{
+  \subproof{
+    \pline[2.]{Q}[\lorea]
+  }{
+    \pline[3.]{P\lor Q}[\lori{2}]
+  }\\
+  \subproof{
+    \pline[4.]{P}[\lorea]
+  }{
+    \pline[5.]{P\lor Q}[\lori{4}]
+  }
+  \pline[6.]{P\lor Q}[\lore{1}{2--3}{4--5}]
+}
+\subsection*{Implication ($(P\lif Q) \liff (\lnot P\lor Q)$)}
+\fitchprf{
+  \pline[1.]{P\lif Q}
+}{
+  \subproof{
+    \pline[2.]{\lnot (\lnot P \lor Q)}[\lnotea]
+  }{
+    \subproof{
+      \pline[3.]{\lnot P}[\lnotea]
+    }{
+      \pline[4.]{\lnot P \lor Q}[\lori{3}]\\
+      \pline[5.]{\lnot (\lnot P\lor Q)}[\reit{2}]
+    }
+    \pline[6.]{P}[\lnote{3--5}]\\
+    \pline[7.]{Q}[\life{1}{6}]\\
+    \pline[8.]{\lnot P\lor Q}[\lori{7}]\\
+    \pline[9.]{\lnot(\lnot P\lor Q)}[\reit{2}]
+  }
+  \pline[10.]{\lnot P\lor Q}[\lnote{2--9}]
+}
+
+\fitchprf{
+  \pline[1.]{\lnot P\lor Q}
+}{
+  \subproof{
+    \pline[2.]{P}[\lifia]
+  }{
+    \subproof{
+      \pline[3.]{\lnot P}[\lorea]
+    }{
+      \subproof{
+        \pline[4.]{\lnot Q}[\lnotea]
+      }{
+        \pline[5.]{P}[\reit{2}]\\
+        \pline[6.]{\lnot P}[\reit{3}]
+      }
+      \pline[7.]{Q}[\lnote{4--6}]
+      }\\
+      \subproof{
+        \pline[8.]{Q}[\lorea]
+      }{
+        \pline[9.]{Q}[\reit{9}]
+      }
+      \pline[10.]{Q}[\lore{1}{3--7}{8--9}]
+    }
+    \pline[11.]{P\lif Q}[\lifi{2--10}]
+}
+
+\subsection*{Double Negation ($P \liff \lnot\lnot P$)}
+\fitchprf{
+  \pline[1.]{P}
+}{
+  \subproof{
+    \pline[2.]{\lnot P}[\lnotia]
+  }{
+    \pline[3.]{P}[\reit{1}]\\
+    \pline[4.]{\lnot P}[\reit{2}]
+  }
+  \pline[5.]{\lnot \lnot P}[\lnoti{2--4}]
+}
+
+\fitchprf{
+  \pline[1.]{\lnot \lnot P}
+}{
+  \subproof{
+    \pline[2.]{\lnot P}[\lnotea]
+  }{
+    \pline[3.]{\lnot P}[\reit{2}]\\
+    \pline[4.]{\lnot \lnot P}[\reit{1}]
+  }
+  \pline[5.]{P}[\lnote{2--4}]
+}
+\subsection*{DeMorgan's Theorm ($\lnot (P\land Q) \liff (\lnot P \lor \lnot Q)$)}
+\fitchprf{
+  \pline[1.]{\lnot (P\land Q)}
+}{
+  \subproof{
+    \pline[2.]{\lnot(\lnot P\lor \lnot Q)}[\lnotea]
+  }{
+    \subproof{
+      \pline[3.]{\lnot P}[\lnotea]
+    }{
+      \pline[4.]{\lnot P \lor \lnot Q}[\lori{3}]\\
+      \pline[5.]{\lnot(\lnot P\lor \lnot Q)}[\reit{2}]
+    }
+    \pline[6.]{P}[\lnote{3--5}]\\
+    \subproof{
+      \pline[7.]{\lnot Q}[\lnotea]
+    }{
+      \pline[8.]{\lnot P \lor \lnot Q}[\lori{7}]\\
+      \pline[9.]{\lnot(\lnot P\lor \lnot Q)}[\reit{2}]
+    }
+    \pline[10.]{Q}[\lnote{7--9}]\\
+    \pline[11.]{P\land Q}[\landi{6}{10}]\\
+    \pline[12.]{\lnot(P\land Q)}[\reit{1}]
+  }
+  \pline[13.]{\lnot P\lor \lnot Q}[\lnote{2--12}]
+}
+
+\fitchprf{
+  \pline[1.]{\lnot P \lor \lnot Q}
+}{
+  \subproof{
+    \pline[2.]{P\land Q}[\lnotia]
+  }{
+    \pline[3.]{P}[\lande{2}]\\
+    \pline[4.]{Q}[\lande{2}]\\
+    \subproof{
+      \pline[5.]{\lnot P}[\lorea]
+    }{
+      \subproof{
+        \pline[6.]{Q}[\lnotia]
+      }{
+        \pline[7.]{P}[\reit{3}]\\
+        \pline[8.]{\lnot P}[\reit{5}]
+      }
+      \pline[9.]{\lnot Q}[\lnoti{6--8}]\\
+    }\\
+    \subproof{
+      \pline[10.]{\lnot Q}[\lorea]
+    }{
+      \pline[11.]{\lnot Q}[\reit{10}]
+    }
+    \pline[12.]{Q}[\reit{4}]\\
+    \pline[13.]{\lnot Q}[\lore{1}{5--9}{10--11}]
+  }
+  \pline[14.]{\lnot(P\land Q)}[\lnoti{2--13}]
+}
+%Using only the rules of SD, derive the following rules of SD+: DS (one case), COM (for ∨ only), IMP, DN, and DEM (~(P&Q) <> ~Pv~Q only). Use SL sentences rather than metavariables in your derivations. Each direction of replacement rules must be shown (that is, you are proving ``equivalence in SD'' in these cases)
+\end{document}
