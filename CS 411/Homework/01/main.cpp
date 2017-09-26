@@ -47,8 +47,20 @@ int main() {
             << "d3[3]:    " << (d3[3]) << std::endl
             << std::endl;
   std::cout << "Input/Output" << std::endl
-            << "Please input a new date for d1 (format: 'M/D')\n->";
+            << "Please input a new date for d1 (format: 'M/D'): ";
   std::cin >> d1;
-  std::cout << "d1:       " << d1 << std::endl;
+  std::cout << std::endl << "d1:       " << d1 << std::endl;
+
+  std::cout << "Please input a new date for d2 (format: 'M/D'): ";
+  std::cin >> d2;
+  std::cout << std::endl << "d2:       " << d2 << std::endl;
+
+  std::cout << "Please input a new date for d3 (format: 'M/D'): ";
+  std::cin >> d3;
+  std::cout << std::endl << "d3:       " << d3 << std::endl;
+
+  std::cout << "Please input a new date for d4 (format: 'M/D'): ";
+  std::cin >> d4;
+  std::cout << std::endl << "d4:       " << d4 << std::endl;
   return 0;
 }

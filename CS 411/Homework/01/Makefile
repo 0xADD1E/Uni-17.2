@@ -8,7 +8,7 @@ clean:
 	rm -f hw01
 	rm -rf hw01.dSYM
 test: all
-	./hw01
+	cat infile | ./hw01
 handin: all clean
 		# Set of tasks for handing things in automagically
 		scp $(wildcard *.hpp) kira:~/tmp/
