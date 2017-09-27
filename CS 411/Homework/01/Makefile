@@ -1,14 +1,15 @@
+OUTFILE = hw01
 all: DayOfYear.o main.cpp
-	g++ -Wall -g3 -std=c++11 -o hw01 DayOfYear.o main.cpp
+	g++ -Wall -g3 -std=c++11 -o $(OUTFILE) DayOfYear.o main.cpp
 DayOfYear.o: DayOfYear.cpp DayOfYear.hpp
 	g++ -Wall -g3 -std=c++11 -c DayOfYear.cpp DayOfYear.hpp
 clean:
-	rm -f $(wildcard *.hpp.gch)
-	rm -f $(wildcard *.o)
-	rm -f hw01
-	rm -rf hw01.dSYM
+	rm -f  $(wildcard *.hpp.gch)
+	rm -f  $(wildcard *.o)
+	rm -rf $(wildcard *.dSYM)
+	rm -f  $(OUTFILE)
 test: all
-	cat infile | ./hw01
+	cat infile | ./$(OUTFILE)
 handin: all clean
 		# Set of tasks for handing things in automagically
 		scp $(wildcard *.hpp) kira:~/tmp/

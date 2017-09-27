@@ -12,20 +12,20 @@ public:
   int getMonth() const;
   int getDay() const;
 
-  const DayOfYear operator+(const DayOfYear &doy); //
-  const DayOfYear operator+(const int &numOfDays);
-  const DayOfYear operator-();
-  const bool operator==(const DayOfYear &doy);
-  const bool operator>(const DayOfYear &doy);
-  const bool operator<(const DayOfYear &doy);
-  const DayOfYear &operator++();   // Prefix
-  const DayOfYear operator++(int); // Postfix
-  const DayOfYear &operator--();   // Prefix
-  const DayOfYear operator--(int); // Postfix
+  const friend DayOfYear operator+(const DayOfYear&, const DayOfYear&);
+  const friend DayOfYear operator+(const int&, const DayOfYear&);
+  const friend DayOfYear operator-(const DayOfYear&);
+  const friend bool operator==(const DayOfYear&, const DayOfYear&);
+  const friend bool operator>(const DayOfYear&, const DayOfYear&);
+  const friend bool operator<(const DayOfYear&, const DayOfYear&);
+  const friend DayOfYear& operator++(DayOfYear&);      // Prefix
+  const friend DayOfYear  operator++(DayOfYear&, int); // Postfix
+  const friend DayOfYear& operator--(DayOfYear&);      // Prefix
+  const friend DayOfYear  operator--(DayOfYear&, int); // Postfix
   const int operator[](const int index);
 
 private:
   int dayOfYear;
   static int monthLengths[];
 };
-const DayOfYear operator-(const DayOfYear &doy1, const DayOfYear &doy2);
+const int operator-(const DayOfYear&, const DayOfYear&);
