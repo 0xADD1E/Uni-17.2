@@ -62,5 +62,8 @@ int main() {
   std::cout << "Please input a new date for d4 (format: 'M/D'): ";
   std::cin >> d4;
   std::cout << std::endl << "d4:       " << d4 << std::endl;
+  std::cout << "Abuses" << std::endl
+            << 1 + d4 << std::endl
+            << d1 - d4 << std::endl;
   return 0;
 }

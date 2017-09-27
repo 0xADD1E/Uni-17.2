@@ -95,56 +95,56 @@ int DayOfYear::getDay() const {
   return dayAcc;
 }
 
-const DayOfYear DayOfYear::operator+(const DayOfYear &doy) {
+const DayOfYear operator+(const DayOfYear& doy1, const DayOfYear& doy2) {
   DayOfYear nDay = DayOfYear();
-  nDay.dayOfYear = (dayOfYear + doy.dayOfYear) % 365;
+  nDay.dayOfYear = (doy1.dayOfYear + doy2.dayOfYear) % 365;
   return nDay;
 }
-const DayOfYear DayOfYear::operator+(const int &numOfDays) {
+const DayOfYear operator+(const int& numOfDays, const DayOfYear& doy1) {
   DayOfYear nDay = DayOfYear();
-  nDay.dayOfYear = (dayOfYear + numOfDays) % 365;
+  nDay.dayOfYear = (doy1.dayOfYear + numOfDays) % 365;
   return nDay;
 }
-const DayOfYear DayOfYear::operator-() {
+const DayOfYear operator-(const DayOfYear& doy1) {
   DayOfYear nDay = DayOfYear();
-  nDay.dayOfYear = 365 - nDay.dayOfYear;
+  nDay.dayOfYear = 365 - doy1.dayOfYear;
   return nDay;
 }
-const bool DayOfYear::operator==(const DayOfYear &doy) {
-  return dayOfYear == doy.dayOfYear;
+const bool operator==(const DayOfYear& doy1, const DayOfYear& doy2) {
+  return doy1.dayOfYear == doy2.dayOfYear;
 }
-const bool DayOfYear::operator>(const DayOfYear &doy) {
-  return dayOfYear > doy.dayOfYear;
+const bool operator>(const DayOfYear& doy1, const DayOfYear& doy2) {
+  return doy1.dayOfYear > doy2.dayOfYear;
 }
-const bool DayOfYear::operator<(const DayOfYear &doy) {
-  return dayOfYear < doy.dayOfYear;
+const bool operator<(const DayOfYear& doy1, const DayOfYear& doy2) {
+  return doy1.dayOfYear < doy2.dayOfYear;
 }
-const DayOfYear &DayOfYear::operator++() {
+const DayOfYear& operator++(DayOfYear& doy1) {
   // Prefix Operator
-  dayOfYear++;
-  dayOfYear %= 365;
-  return *this;
+  doy1.dayOfYear++;
+  doy1.dayOfYear %= 365;
+  return doy1;
 }
-const DayOfYear DayOfYear::operator++(int) {
+const DayOfYear operator++(DayOfYear& doy1, int) {
   // Postfix Operator
   DayOfYear oDay = DayOfYear();
-  oDay.dayOfYear = dayOfYear;
-  dayOfYear++;
-  dayOfYear %= 365;
+  oDay.dayOfYear = doy1.dayOfYear;
+  doy1.dayOfYear++;
+  doy1.dayOfYear %= 365;
   return oDay;
 }
-const DayOfYear &DayOfYear::operator--() {
+const DayOfYear& operator--(DayOfYear& doy1) {
   // Prefix Operator
-  dayOfYear--;
-  dayOfYear %= 365;
-  return *this;
+  doy1.dayOfYear--;
+  doy1.dayOfYear %= 365;
+  return doy1;
 }
-const DayOfYear DayOfYear::operator--(int) {
+const DayOfYear operator--(DayOfYear& doy1, int) {
   // Postfix Operator
   DayOfYear oDay = DayOfYear();
-  oDay.dayOfYear = dayOfYear;
-  dayOfYear--;
-  dayOfYear %= 365;
+  oDay.dayOfYear = doy1.dayOfYear;
+  doy1.dayOfYear--;
+  doy1.dayOfYear %= 365;
   return oDay;
 }
 const int DayOfYear::operator[](const int index) {
@@ -160,11 +160,15 @@ const int DayOfYear::operator[](const int index) {
   }
 }
 
-const DayOfYear operator-(const DayOfYear &doy1, const DayOfYear &doy2) {
+const int operator-(const DayOfYear &doy1, const DayOfYear &doy2) {
   // Ugly bc not allowed to be member function
   int day1 = doy1.getDay(), day2 = doy2.getDay();
   int month1 = doy1.getMonth(), month2 = doy2.getMonth();
-  int dayCount = day1 - day2 + 365;
+  if (month2 > month1 || day2 > day1){
+      std::cout << "DayOfYear 2 Larger than DayOfYear 1 -- Not Subtracting" << std::endl;
+      return 0;
+  }
+  int dayCount = day1 - day2;
   int monthLengths[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
   for (int i = 0; i < month1 - 1; i++) {
     dayCount += monthLengths[i];
@@ -172,13 +176,5 @@ const DayOfYear operator-(const DayOfYear &doy1, const DayOfYear &doy2) {
   for (int i = 0; i < month2 - 1; i++) {
     dayCount -= monthLengths[i];
   }
-
-  dayCount %= 365;
-
-  int monthCount = 0;
-  while (dayCount > 31) {
-    dayCount -= monthLengths[monthCount];
-    monthCount++;
-  }
-  return DayOfYear(++monthCount, dayCount);
+  return dayCount;
 }
