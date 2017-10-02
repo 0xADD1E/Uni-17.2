@@ -13,6 +13,7 @@ public:
   int getDay() const;
 
   const friend DayOfYear operator+(const DayOfYear&, const DayOfYear&);
+  const friend DayOfYear operator+(const DayOfYear&, const int&);
   const friend DayOfYear operator+(const int&, const DayOfYear&);
   const friend DayOfYear operator-(const DayOfYear&);
   const friend bool operator==(const DayOfYear&, const DayOfYear&);
