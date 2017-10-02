@@ -64,6 +64,9 @@ int main() {
   std::cout << std::endl << "d4:       " << d4 << std::endl;
   std::cout << "Abuses" << std::endl
             << 1 + d4 << std::endl
-            << d1 - d4 << std::endl;
+            << d1 - d4 << std::endl
+            << DayOfYear(12, 31) + 0 << std::endl
+            << DayOfYear(12, 31) + 1 << std::endl
+            << DayOfYear(12, 31) + 2 << std::endl;
   return 0;
 }
