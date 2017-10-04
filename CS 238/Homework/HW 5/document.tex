@@ -1,0 +1,25 @@
+\documentclass{hitec}
+\usepackage{minted}
+\usepackage{array}
+\title{Homework 5}
+\author{Addie Morrison}
+\date{4 Oct 2017}
+\begin{document}
+\maketitle
+\section{Code}
+\inputminted[linenos, firstline=12]{nasm}{HW_5.asm}
+\section{Register Breakdown}
+\newcolumntype{t}{>{\ttfamily}l}
+\begin{tabular}{l|t|t|t|t|t|t|}
+  Line & eax & ebx & ecx & edx & degreesOut\\
+  \hline\hline
+  21 & -9   & -  & - & - & -    \\
+  22 & -    & -9 & - & - & -    \\
+  23 & 9    & -9 & - & - & -    \\
+  24 & -81  & -  & - & - & -    \\
+  25 & -81  & 5  & - & - & -    \\
+  26 & -16  & -  & - & - & -    \\
+  27 & 16   & -  & - & - & -    \\
+  28 & -    & -  & - & - & `16' \\
+\end{tabular}
+\end{document}
