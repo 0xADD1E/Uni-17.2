@@ -1,41 +1,131 @@
 \documentclass{hitec}
-\usepackage{minted}
-\usepackage[table]{xcolor}
-\definecolor{odd} {gray}{0.950}
-\definecolor{even}{gray}{0.875}
-\author{Addie Morrison}
-\title{Homework 5 -- Version 2.0}
-\date{18 October 2017}
+    \usepackage{minted}
+    \usepackage{graphicx}
+    \author{Addie Morrison}
+    \title{Homework 6}
+    \date{23 Oct 2017}
 \begin{document}
 \maketitle
-\section{Sample IO}
-\begin{enumerate}
-\item Please enter a: 10
-\item Please enter b: 6
-\item Please enter c: -3
-\item Quotient is 3
-\item Remainder is 6
-\end{enumerate}
-\section{Code}
-\inputminted[linenos, firstline=12]{nasm}{HW_5v2.asm}
-\section{Register Breakdown}
-\newcolumntype{t}{>{\ttfamily}r}
-
-\rowcolors{1}{odd}{even}
-\begin{tabular}{t| *{4}{t|}   r|}
-  {\rmfamily Line} & {\rmfamily eax} & {\rmfamily ebx} & {\rmfamily ecx} & {\rmfamily edx} & Output Number\\\hline
-  25 &     &    &    & 10 &       \\
-  29 &     &  6 &    & 10 &       \\
-  33 &     &  6 & -3 & 10 &       \\
-  35 &  10 &  6 & -3 &    &       \\
-  37 &  60 &    & -3 &    &       \\
-  38 &     & 60 &    &    &       \\
-  40 &   5 & 60 & -3 &    &       \\
-  41 & -15 & 60 &    &    &       \\
-  43 &  45 &    &    &    &       \\
-  45 &  45 & 13 &    &    &       \\
-  47 &   3 &    &    &  6 &       \\
-  49 &   3 &    &    &  6 & ``3'' \\
-  52 &   3 &    &    &  6 & ``6'' \\
-\end{tabular}
+\begin{minipage}{\linewidth}
+\section{Determine If The Jump Occurs}
+\subsection*{A}
+Yes
+\subsection*{B}
+No
+\subsection*{C}
+Yes
+\subsection*{D}
+No
+\subsection*{E}
+No
+\subsection*{F}
+Yes
+\end{minipage}
+\begin{minipage}{\linewidth}
+\section{Translate the \texttt{if} pseudo-code}
+\subsection*{A}
+\begin{minted}{nasm}
+if1:    cmp eax, value  ; if(count > value)
+        jng endif
+then1:  mov eax, 0
+endif:
+\end{minted}
+\end{minipage}
+\begin{minipage}{\linewidth}
+\subsection*{B}
+\begin{minted}{nasm}
+if1:    mov  ebx, a     ; if(a + b == c)
+        add  ebx, b
+        cmp  ebx, c
+        jne  else1
+then1:  mov  ah, 89
+        jmp  endif
+else1:  mov  ah, 78
+endif:
+\end{minted}
+\end{minipage}
+\begin{minipage}{\linewidth}
+\subsection*{C}
+\begin{minted}{nasm}
+if1:    cmp  al, 97      ; if(c>='a' && c<='z')
+        jnge else1
+        cmp  al, 122
+        jnle else1
+then1:  inc  lowercount
+        jmp  endif
+else1:  
+if2:    cmp  al, 65      ; if(c>='A' && c<='Z')
+        jnge else2
+        cmp  al, 90
+        jnle else2
+then2:  inc  uppercount
+        jmp  endif
+else2:  inc  othercount
+endif:
+\end{minted}
+\end{minipage}
+\begin{minipage}{\linewidth}
+\section{Translate the loop pseudo-code}
+\subsection*{A}
+\begin{minted}{nasm}
+        mov  sum, 0
+        mov  eax, 100
+while1: cmp  sum, 1000   ; while(sum<1000 || count>=0)
+        jl   body1
+        cmp  eax, 0
+        jge  body1
+        jmp  end1
+body1:  add  sum, eax
+        dec  eax
+        jmp  while1
+end1:
+\end{minted}
+\end{minipage}
+\begin{minipage}{\linewidth}
+\subsection*{B}
+\begin{minted}{nasm}
+        mov  eax, 0
+        mov  sum, 500
+while1: cmp  eax, 60     ; while(eax<=60 && sum>200)
+        jnle end1
+        cmp  sum, 200
+        jng  end1
+body1:  sub  sum, eax
+        inc  eax
+        jmp  while1
+end1:   
+\end{minted}
+\end{minipage}
+\begin{minipage}{\linewidth}
+\subsection*{C}
+\begin{minted}{nasm}
+        mov sum, 0
+        mov eax, 1
+do1:    add sum, eax
+        inc eax
+until1: cmp sum, 5000   ; until(sum>5000 || eax==40)
+        jg  end1
+        cmp eax, 40
+        je  end1
+        jmp do1
+end1:   
+\end{minted}
+\end{minipage}
+\begin{minipage}{\linewidth}
+\subsection*{D}
+\begin{minted}{nasm}
+        mov  sum, 1000
+        mov  eax, 100    ; for(eax=100;eax>=50;eax--)
+for1:   cmp  eax, 50
+        jnge end1
+body1:  mov  ecx, eax
+        mov  eax, 2
+        mul  ecx
+        sub  sum, eax
+        mov  eax, ecx
+        dec  eax        ; eax--
+        jmp  for1
+end1:
+\end{minted}
+\end{minipage}
 \end{document}

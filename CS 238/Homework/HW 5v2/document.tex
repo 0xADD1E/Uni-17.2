@@ -1,0 +1,41 @@
+\documentclass{hitec}
+\usepackage{minted}
+\usepackage[table]{xcolor}
+\definecolor{odd} {gray}{0.950}
+\definecolor{even}{gray}{0.875}
+\author{Addie Morrison}
+\title{Homework 5 -- Version 2.0}
+\date{18 October 2017}
+\begin{document}
+\maketitle
+\section{Sample IO}
+\begin{enumerate}
+\item Please enter a: 10
+\item Please enter b: 6
+\item Please enter c: -3
+\item Quotient is 3
+\item Remainder is 6
+\end{enumerate}
+\section{Code}
+\inputminted[linenos, firstline=12]{nasm}{HW_5v2.asm}
+\section{Register Breakdown}
+\newcolumntype{t}{>{\ttfamily}r}
+
+\rowcolors{1}{odd}{even}
+\begin{tabular}{t| *{4}{t|}   r|}
+  {\rmfamily Line} & {\rmfamily eax} & {\rmfamily ebx} & {\rmfamily ecx} & {\rmfamily edx} & Output Number\\\hline
+  25 &     &    &    & 10 &       \\
+  29 &     &  6 &    & 10 &       \\
+  33 &     &  6 & -3 & 10 &       \\
+  35 &  10 &  6 & -3 &    &       \\
+  37 &  60 &    & -3 &    &       \\
+  38 &     & 60 &    &    &       \\
+  40 &   5 & 60 & -3 &    &       \\
+  41 & -15 & 60 &    &    &       \\
+  43 &  45 &    &    &    &       \\
+  45 &  45 & 13 &    &    &       \\
+  47 &   3 &    &    &  6 &       \\
+  49 &   3 &    &    &  6 & ``3'' \\
+  52 &   3 &    &    &  6 & ``6'' \\
+\end{tabular}
+\end{document}
