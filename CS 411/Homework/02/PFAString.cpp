@@ -58,21 +58,42 @@ void PFAString::pop_back(){
     size--;
 }
 void PFAString::resize(int newCapacity){
+  if (newCapacity < 0) {
+    resize(0);
+    return;
+  }
+  std::string *new_arr = new std::string[newCapacity];
+  for (int i = 0; i < newCapacity && i < capacity; i++) {
+      new_arr[i] = arr[i];
+  }
+  delete[] arr;
+  arr = new_arr;
+  size = min(size, newCapacity);
+  capacity = newCapacity;
+}
+void PFAString::resize(int newCapacity, std::string fillWith){
     if(newCapacity<0){
         resize(0);
         return;
     }
     std::string *new_arr = new std::string[newCapacity];
-    for(int i = 0; i<newCapacity && i<capacity; i++){
-        new_arr[i] = arr[i];
+    for(int i = 0; i<newCapacity; i++){
+        if(i<size){
+          new_arr[i] = arr[i];
+        }
+        else{
+            new_arr[i] = fillWith;
+        }
     }
     delete[] arr;
     arr = new_arr;
-    size = min(size, newCapacity);
+    size = newCapacity;
     capacity = newCapacity;
 }
 void PFAString::empty_array(){
+    int old_capacity = capacity;
     resize(0);
+    resize(old_capacity);
 }
 std::string& PFAString::operator[](const int index) const{
     if(index < 0 || index > capacity){

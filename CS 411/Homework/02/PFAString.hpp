@@ -16,6 +16,7 @@ public:
     void push_back(std::string);                    // Places a string at the back of the array
     void pop_back();                                // Destroys the string at the back of the array
     void resize(int);                               // Grows or shrinks array accordingly
+    void resize(int, std::string);                  // Grows or shrinks array accordingly
     void empty_array();                             // Sets the size to zero
 
     std::string& operator[](const int) const;       // Needs to work as l-value

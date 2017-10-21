@@ -74,6 +74,20 @@ TEST(Methods, Resize){
     myVector.resize(10);
     EXPECT_EQ(myVector.get_capacity(), 10);
 }
+TEST(Methods, ResizeWithFill) {
+  PFAString myVector(5, "C0DE");
+  myVector.resize(10, "DEAD");
+  EXPECT_EQ(myVector.get_size(), 10);
+  EXPECT_EQ(myVector.get_capacity(), 10);
+  for(int i = 0; i < 10; i++){
+      if(i < 5){
+        EXPECT_EQ(myVector[i], "C0DE");
+      }
+      else{
+        EXPECT_EQ(myVector[i], "DEAD");
+      }
+  }
+}
 TEST(Methods, EmptyArray){
     const std::string PATTERN = "FACADE";
     PFAString myVector(10, PATTERN);
@@ -81,6 +95,7 @@ TEST(Methods, EmptyArray){
     myVector.empty_array();
 
     EXPECT_EQ(myVector.get_size(), 0);
+    EXPECT_EQ(myVector.get_capacity(), 10);
 }
 
 TEST(Operators, Index){
