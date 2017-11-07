@@ -1,29 +1,41 @@
 #include "Doodlebug.hh"
-Doodlebug::Doodlebug(Point position) : Critter(position) {}
+Doodlebug::Doodlebug(Point position) : Critter(position, true) {
+  _stepsSinceFeeding = 0;
+}
 void Doodlebug::Move() {
-  for (auto const &ant : Simulation::get_ants()) {
-    Point otherPosition = ant.get_position();
-    if ((otherPosition.X == _position.X + 1 && otherPosition.Y == _position.Y) ||
-        (otherPosition.X == _position.X - 1 && otherPosition.Y == _position.Y) ||
-        (otherPosition.X == _position.X && otherPosition.Y == _position.Y + 1) ||
-        (otherPosition.X == _position.X && otherPosition.Y == _position.Y - 1)) {
-      _position = otherPosition;
-      _stepsSinceFeeding = 0;
-      Simulation::kill_ant(otherPosition);
-      return;
-    }
+  movement_enabled = false;
+  Point candidatePoints[] = {
+      Point(_position.X + 1, _position.Y), Point(_position.X - 1, _position.Y),
+      Point(_position.X, _position.Y + 1), Point(_position.X, _position.Y - 1)};
+
+  for (int i = 0; i < 4; i++) {
+    Point candidate = candidatePoints[i];
+    if (candidate.X >= GRID_BOUND || candidate.X < 0 ||
+        candidate.Y >= GRID_BOUND || candidate.Y < 0)
+      continue;
+    Critter *bug = Simulation::get_state(candidate);
+    if (bug == nullptr || bug->get_isdoodlebug())
+      continue;
+    Simulation::kill(candidate);
+    Simulation::ant_eaten();
+    _position = candidate;
+    _stepsSinceFeeding = 0;
+    return;
   }
+  _stepsSinceFeeding++;
   Critter::Move();
 }
-void Doodlebug::Survival() {
+bool Doodlebug::Survival() {
   if (_stepsSinceBreeding >= 8) {
     Point childPosition = Simulation::get_adjacent_position(_position);
     if (childPosition != Point(-1, -1)) {
-      Simulation::get_doodlebugs().push_back(Doodlebug(childPosition));
+      Simulation::set_state(childPosition, new Doodlebug(childPosition));
+      Simulation::doodlebug_born();
       _stepsSinceBreeding = 0;
-      return;
+      return get_saited();
     }
   }
   _stepsSinceBreeding++;
+  return get_saited();
 }
-bool Doodlebug::get_starved() { return _stepsSinceFeeding > 3; }
+bool Doodlebug::get_saited() { return _stepsSinceFeeding <= 3; }

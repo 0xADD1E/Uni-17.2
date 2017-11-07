@@ -7,12 +7,12 @@
 class Doodlebug : public Critter {
 private:
     int _stepsSinceFeeding;
+    bool get_saited();
 public:
     Doodlebug(Point);
 
     void Move();
-    void Survival();
-
-    bool get_starved();
+    bool Survival();
 };
+bool operator==(const Doodlebug &, const Point &);
 #endif

@@ -7,11 +7,17 @@ class Critter{
 protected:
     Point _position;
     int _stepsSinceBreeding;
+    bool _isDoodlebug;
+    bool movement_enabled;
 public:
-    Critter(Point);
-    virtual void Survival() = 0;
+    Critter(Point, bool);
+    virtual ~Critter();
+    virtual bool Survival() = 0;
     virtual void Move();
 
     Point get_position() const;
+    bool get_isdoodlebug() const;
+    bool can_move() const;
+    void let_move();
 };
 #endif

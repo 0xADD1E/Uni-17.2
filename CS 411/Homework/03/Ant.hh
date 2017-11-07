@@ -9,7 +9,7 @@ public:
   Ant(Point);
 
   void Move();
-  void Survival();
+  bool Survival();
 };
 bool operator==(const Ant &, const Point &);
 #endif

@@ -4,7 +4,7 @@ Point::Point(int x, int y){
     Y = y;
 }
 bool Point::operator==(const Point other){
-    return X == other.X && X == other.Y;
+    return X == other.X && Y == other.Y;
 }
 bool Point::operator!=(const Point other) {
   return !(*this==other);
