@@ -171,10 +171,9 @@ void Simulation::print_state(std::string heading) {
       if (bug == nullptr) {
         std::cout << " ";
       } else if (bug->get_isdoodlebug()) {
-        // TODO: set back to O and X respectively
-        std::cout << "D";
+        std::cout << "O";
       } else {
-        std::cout << "A";
+        std::cout << "X";
       }
     }
     std::cout << "|" << std::endl;

@@ -7,8 +7,8 @@
 #include <iostream>
 #include <vector>
 
-#define GRID_BOUND 5
-#define N_ANTS 10
+#define GRID_BOUND 20
+#define N_ANTS 100
 #define N_DOODLEBUGS 5
 
 #define randnum(min, max) (rand()%(max-min) + min)
