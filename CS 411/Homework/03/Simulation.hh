@@ -6,6 +6,7 @@
 #include <cstdlib>
 #include <iostream>
 #include <vector>
+#include <ctime>
 
 #define GRID_BOUND 20
 #define N_ANTS 100
@@ -21,7 +22,7 @@ class Simulation{
 private:
   static Critter* _state[GRID_BOUND][GRID_BOUND];
   static void print_state(std::string);
-  static void print_step_stats();
+  static void print_step_stats(int);
   static Point get_valid_position();
   static void run_step();
 

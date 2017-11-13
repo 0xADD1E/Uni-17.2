@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS = -Wall -std=c++11 -Wno-c++11-extensions -g3 #clang is very loud when you use cpp11
+CXXFLAGS = -Wall -std=c++11 -Wno-c++11-extensions -O3 #clang is very loud when you use cpp11
 all: hw03
 hw03: main.o Ant.o Critter.o Doodlebug.o Point.o Simulation.o
 	$(CXX) $(CXXFLAGS) -o hw03 main.o ant.o critter.o doodlebug.o point.o simulation.o

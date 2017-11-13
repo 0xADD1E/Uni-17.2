@@ -3,6 +3,7 @@
 Critter *Simulation::_state[GRID_BOUND][GRID_BOUND];
 
 Simulation::Simulation() {
+  srand(std::time(nullptr));
   for (int i = 0; i < N_ANTS; i++) {
     Point position = get_valid_position();
     Ant *to_insert = new Ant(position);
@@ -15,8 +16,8 @@ Simulation::Simulation() {
   }
 }
 void Simulation::Run() {
-  srand(0); // TODO: Actually seed
   print_state("Initial State");
+  int num_steps = 0;
   while (true) {
     ants_eaten = 0;
     ants_born = 0;
@@ -24,9 +25,9 @@ void Simulation::Run() {
     doodlebugs_born = 0;
     total_ants = 0;
     total_doodlebugs = 0;
-
     run_step();
-    print_step_stats();
+    num_steps++;
+    print_step_stats(num_steps);
     if (total_ants == 0) {
       std::cout << "No ants remaining" << std::endl
                 << "All doodlebugs will starve shortly" << std::endl
@@ -138,7 +139,7 @@ void Simulation::set_state(Point position, Critter *bug) {
   _state[position.X][position.Y] = bug;
 }
 
-void Simulation::print_step_stats() {
+void Simulation::print_step_stats(int steps_completed) {
   for (int i = 0; i < GRID_BOUND; i++) {
     for (int j = 0; j < GRID_BOUND; j++) {
       Critter *bug = _state[i][j];
@@ -156,6 +157,7 @@ void Simulation::print_step_stats() {
             << "Doodlebugs Born:    " << doodlebugs_born << std::endl
             << "Total Ants:         " << total_ants << std::endl
             << "Total Doodlebugs:   " << total_doodlebugs << std::endl
+            << "Steps Completed:    " << steps_completed << std::endl
             << std::endl;
 }
 void Simulation::print_state(std::string heading) {
