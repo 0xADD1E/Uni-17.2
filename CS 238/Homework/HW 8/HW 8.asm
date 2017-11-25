@@ -25,36 +25,34 @@ gcd PROC
         mov     esi, [ebp + 8]
         mov     edi, [ebp + 12]
         cmp     esi, edi
-        ja      lbl1;A>B
-        jb      lbl2;A<B
+        ja      more
+        jb      less
         mov     eax, esi
 	pop     ebp
-        ret
-lbl1:   sub     esi, edi
+        ret     8
+more:   sub     esi, edi
 	push    esi
 	push    edi
         call    gcd
-	add     esp, 8
 	pop     ebp
-        ret
-lbl2:   sub     edi, esi
+        ret     8
+less:   sub     edi, esi
 	push    esi
 	push    edi
         call    gcd
-        add     esp, 8
         pop     ebp
-        ret
+        ret     8
 gcd ENDP
 gcdfast PROC
         cmp     esi, edi
-        ja      lbl1;A>B
-        jb      lbl2;A<B
+        ja      more
+        jb      less
         mov     eax, esi
         ret
-lbl1:   sub     esi, edi
+more:   sub     esi, edi
         call    gcd
         ret
-lbl2:   sub     edi, esi
+less:   sub     edi, esi
         call    gcd
         ret
 gcdfast ENDP
@@ -71,13 +69,11 @@ _MainProc PROC
         push    esi
         push    edi
         call    gcd
-        add     esp, 8
         
         ; Alternative implementation with the fastcall convention.
         ; Uses registers instead of the stack. Faster, less risk
         ; (though only useful for things that fit into 6 registers)
         ; Which would you rather see in your code?
-        and esp, 0fffffffch ;BSDs require 16 byte alignment before entering function
         call gcdfast
 
         dtoa    result, eax
